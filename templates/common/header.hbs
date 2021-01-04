@@ -1,0 +1,28 @@
+    <header class="header">
+      <a href="/home" class="logo">
+        <img src="/images/logos/Logo.png">
+      </a>
+
+      <div class="header-right">
+        <ul>
+          {{#if loggedIn}}
+          <li>
+            <a href="/myRecepies">My Recipes</a>
+          </li>
+          <li>
+            <a href="/createRecipe">Create Recipe</a>
+          </li>
+          <li>Welcome, {{email}} | 
+            <a  href="/logout">Logout</a>
+          </li>
+          {{/if}}
+          <li>
+            <a href="/register">Register</a>
+          </li>
+
+          <li>
+            <a href="/login">Login</a>
+          </li>
+        </ul>
+      </div>
+    </header>
