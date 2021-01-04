@@ -3,26 +3,40 @@
         <img src="/images/logos/Logo.png">
       </a>
 
-      <div class="header-right">
-        <ul>
-          {{#if loggedIn}}
+      {{#if loggedIn}}
+      <div class="header-left">
+        <ul>     
           <li>
             <a href="/myRecepies">My Recipes</a>
           </li>
           <li>
             <a href="/createRecipe">Create Recipe</a>
           </li>
+        </ul>
+      </div>
+      <div class="header-right">
+        <ul>
           <li>Welcome, {{email}} | 
             <a  href="/logout">Logout</a>
           </li>
-          {{/if}}
           <li>
             <a href="/register">Register</a>
           </li>
-
           <li>
             <a href="/login">Login</a>
           </li>
         </ul>
       </div>
+      {{/if}}
+      <div class="header-right">
+        <ul>
+          <li>
+            <a href="/register">Register</a>
+          </li>
+          <li>
+            <a href="/login">Login</a>
+          </li>
+        </ul>
+      </div>
+
     </header>
