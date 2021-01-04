@@ -1,3 +1,19 @@
 {{> header}}
-<h1>Login</h1>
+    <form action="/login" method="POST" class="login-form"> 
+        <div class="content-login-form">
+        <h1 class="title-login">Login</h1>
+            <p>Don't have an account?
+                <a href="/register">Register now</a> and become part of our family!
+            </p>
+                <label for="email">
+                    <span>E-mail: </span>
+                </label>
+                <input type="email" name="email">
+                <label for="password">
+                    <span>Password: </span>
+                </label>
+                <input type="password" name="password">
+                <button class="login-btn">Login</button>
+        </div>
+    </form> 
 {{> footer}}
