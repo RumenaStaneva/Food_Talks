@@ -46,7 +46,23 @@ const app = Sammy('#root', function(){
                  context.redirect('/home');
              })
              .catch(e => errorHandling(e))
-     })
+     });
+
+     this.get('/myRecepies', function(context){
+        
+        loadHeaderAndFooter(context)
+            .then(function(){
+            this.partial('./templates/myRecepies.hbs')
+        })
+    });
+
+    this.get('/aboutUs', function(context){
+        
+        loadHeaderAndFooter(context)
+            .then(function(){
+            this.partial('./templates/aboutUs.hbs')
+        })
+    });
 
 
 
