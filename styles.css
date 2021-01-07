@@ -285,3 +285,42 @@ text-decoration: none;
   text-decoration: underline;
   cursor: pointer;
 }
+
+.background-img-about-us {
+  background-image: url('images/DSC_0283-1200x675.jpg');
+  background-position: 16% 45%;
+  background-repeat: no-repeat;
+  background-size: 130%;
+  opacity: 0.89;  
+  padding: 4px 130px;
+}
+
+.background-square-about-us {
+background-color: #fff;
+opacity: 0.90;
+max-width: 900px;
+width: 40%;
+padding: 10px 20px 305px;
+margin: 20px 0 20px;
+text-align: center;
+border-radius: 30px;
+}
+
+.background-square-about-us h1 {
+font-family: Volkhov;
+font-size: 30px;
+line-height: 39px;
+text-decoration-line: underline;
+color: #375163;
+padding: 20px;
+}
+
+.about-us-text {
+font-family: Volkhov;
+font-weight: bold;
+font-size: 25px;
+text-align: center;
+color: #375163;
+padding: 0 100px 0;
+
+}
