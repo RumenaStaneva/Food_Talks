@@ -4,7 +4,7 @@ const app = Sammy('#root', function(){
     this.use('Handlebars', 'hbs');
 
      //GET
-     this.get('/home', function(context){
+    this.get('/home', function(context){
         
 //         DB.collection('recepies')
 //             .get()
@@ -22,14 +22,14 @@ const app = Sammy('#root', function(){
             
 //         })
 
-     this.get('/register', function(context){
+    this.get('/register', function(context){
         
          loadHeaderAndFooter(context).then(function(){
              this.partial('./templates/register.hbs')
          });
      });
 
-     this.get('/login', function(context){
+    this.get('/login', function(context){
         
          loadHeaderAndFooter(context)
              .then(function(){
@@ -37,7 +37,7 @@ const app = Sammy('#root', function(){
          })
      });
 
-     this.get('/logout', function(context){
+    this.get('/logout', function(context){
          firebase.auth()
              .signOut()
              .then(() => {
@@ -48,7 +48,7 @@ const app = Sammy('#root', function(){
              .catch(e => errorHandling(e))
      });
 
-     this.get('/myRecepies', function(context){
+    this.get('/myRecepies', function(context){
         
         loadHeaderAndFooter(context)
             .then(function(){
@@ -61,6 +61,14 @@ const app = Sammy('#root', function(){
         loadHeaderAndFooter(context)
             .then(function(){
             this.partial('./templates/aboutUs.hbs')
+        })
+    });
+
+    this.get('/createRecipe', function(context){
+        
+        loadHeaderAndFooter(context)
+            .then(function(){
+            this.partial('./templates/createRecipe.hbs')
         })
     });
 

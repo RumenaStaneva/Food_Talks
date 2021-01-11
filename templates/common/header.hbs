@@ -1,19 +1,22 @@
     <header class="header">
-      <a href="/home" class="logo">
-        <img src="/images/logos/Logo.svg">
-      </a>
-
        {{#if loggedIn}} 
-      <div class="header-left">
-        <ul>     
-          <li>
-            <a href="/myRecepies">My Recipes</a>
-          </li>
-          <li>
-            <a href="/createRecipe">Create Recipe</a>
-          </li>
-        </ul>
+       <div class="header-container">
+         <a href="/home" class="logo">
+          <img src="/images/logos/Logo.svg">
+        </a>
+
+        <div class="header-left">
+          <ul>     
+            <li>
+              <a href="/myRecepies">My Recipes</a>
+            </li>
+            <li>
+              <a href="/createRecipe">Create Recipe</a>
+            </li>
+          </ul>
+        </div>
       </div>
+      
       <div class="header-right">
         <ul>
           <li class="welcome">Welcome, {{email}} | 
@@ -22,6 +25,10 @@
         </ul>
       </div>
       {{else}}
+      <a href="/home" class="logo">
+        <img src="/images/logos/Logo.svg">
+      </a>
+
       <div class="header-right">
         <ul>
           <li>

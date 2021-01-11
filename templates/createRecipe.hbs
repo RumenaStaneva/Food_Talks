@@ -1,0 +1,23 @@
+{{> header}}
+<div class="createFormContainer">
+     <div class="createForm">
+        <h2>Add new recipe</h2>
+            <form action="/createRecipe" method="POST" id="formAddRecipe">
+                <label for="recipeName">Recipe name:</label>
+                <input type="text" id="recipeName" name="recipeName" placeholder="Recipe name">
+                <label for="ingredients">Ingredients:</label>
+                <input type="text" id="ingredients" name="ingredients" placeholder="Ingredients">
+                <label for="time">Time:</label>
+                <input type="number" id="time" name="time" placeholder="Time">
+                <label for="instructions">Instructions:</label>
+                <input type="text" id="instructions" name="instructions">
+                <label for="imgUrl">Image:</label>
+                <input type="text" id="imgUrl" name="imgUrl" placeholder="https://">
+
+                <input type="submit" class="create" value="Add">
+            </form>
+    </div>
+</div>
+   
+            
+{{> footer}}
