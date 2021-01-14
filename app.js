@@ -6,13 +6,15 @@ const app = Sammy('#root', function(){
      //GET
     this.get('/home', function(context){
         
-//         DB.collection('recepies')
-//             .get()
-//                 .then((res) => {
+         DB.collection('recepies')
+             .get()
+                 .then((res) => {
 
-//                     context.recepies = res.docs.map((recepie) => {
-//                         return { id: recepie.id, ...recepie.data()}
-//                     })
+                     context.recepies = res.docs.map((recepie) => {
+                         console.log(recepie.data());
+                         
+                         return { id: recepie.id, ...recepie.data()}
+                     })
                      loadHeaderAndFooter(context).then(function(){
                          this.partial('./templates/home.hbs')
                      }); 
@@ -20,7 +22,7 @@ const app = Sammy('#root', function(){
             
             
             
-//         })
+         })
 
     this.get('/register', function(context){
         
@@ -116,12 +118,13 @@ const app = Sammy('#root', function(){
      });
 
      this.post('/createRecipe', function(context) {
-         const {recipeName, ingredients, time, instructions, imgUrl} = context.params;
+         const {recipeName, ingredients, hours, minutes, instructions, imgUrl} = context.params;
 
          DB.collection('recepies').add({
             recipeName,
             ingredients,
-            time,
+            hours,
+            minutes,
             instructions, 
             imgUrl,
             creator: getUserData().uid,
