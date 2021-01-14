@@ -1,4 +1,4 @@
-// const DB = firebase.firestore();
+const DB = firebase.firestore();
 
 const app = Sammy('#root', function(){
     this.use('Handlebars', 'hbs');
@@ -113,7 +113,27 @@ const app = Sammy('#root', function(){
         
          }).catch(e => errorHandling(e));
         
-     })
+     });
+
+     this.post('/createRecipe', function(context) {
+         const {recipeName, ingredients, time, instructions, imgUrl} = context.params;
+
+         DB.collection('recepies').add({
+            recipeName,
+            ingredients,
+            time,
+            instructions, 
+            imgUrl,
+            creator: getUserData().uid,
+            peopleWhoLiked: [],
+         })
+             .then((createdRecipe) => {
+                 console.log(createdRecipe);
+                 this.redirect('/home');
+             })
+             .catch(e => errorHandling(e));
+        
+     });
 
 
 });

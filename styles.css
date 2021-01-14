@@ -332,6 +332,7 @@ padding: 0 100px 0;
   justify-content: center;
   align-items: center;
 }
+
 .createForm {
   font-family: Volkhov;
   text-align: center;
@@ -345,15 +346,49 @@ padding: 0 100px 0;
   font-size: 20px;
 }
 
-.createForm input {
+.createForm input, textarea {
   display: block;
   width: 50%; 
   height: 50px;
   margin: auto;
   margin-top: 10px;
   margin-bottom: 10px;
+  font-family: Volkhov;
+  font-size: 23px;
+  color: #375163;
+  border-radius: 10px;
 }
 
 .createForm .create {
 padding: 0;
+background-color: #375163;
+color: #fff;
+border-color: #fff;
+text-decoration: none;
+font-family: Volkhov;
 }
+
+.createForm .create:hover {
+background-color: #fff;
+color: #375163;
+}
+
+.createForm textarea {
+  resize: none;
+  min-height: 300px;
+}
+.container-time input {
+  width: 120px;
+  justify-content: center;
+}
+
+.container-time input + input{
+  margin-left: -310px;
+  margin-right: 335px;
+}
+
+.container-time {
+  display: flex;
+
+}
+

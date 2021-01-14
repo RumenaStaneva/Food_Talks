@@ -6,11 +6,14 @@
                 <label for="recipeName">Recipe name:</label>
                 <input type="text" id="recipeName" name="recipeName" placeholder="Recipe name">
                 <label for="ingredients">Ingredients:</label>
-                <input type="text" id="ingredients" name="ingredients" placeholder="Ingredients">
+                <textarea type="text" id="ingredients" name="ingredients" placeholder="Ingredients" cols="30" rows="10"></textarea>
                 <label for="time">Time:</label>
-                <input type="number" id="time" name="time" placeholder="Time">
+                <div class="container-time">
+                    <input type="number" id="hours" name="hours" placeholder="Hours">
+                    <input type="number" id="minutes" name="minutes" placeholder="Minutes">
+                </div>
                 <label for="instructions">Instructions:</label>
-                <input type="text" id="instructions" name="instructions">
+                <textarea id="instructions" name="instructions" placeholder="Instructions" cols="30" rows="10"></textarea>
                 <label for="imgUrl">Image:</label>
                 <input type="text" id="imgUrl" name="imgUrl" placeholder="https://">
 
