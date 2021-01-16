@@ -125,26 +125,30 @@ const app = Sammy('#root', function(){
      });
 
      this.post('/createRecipe', function(context) {
-         const {recipeName, ingredients, hours, minutes, instructions, imgUrl} = context.params;
+         let {recipeName, ingredients, hours, minutes, instructions, imgUrl} = context.params;
 
          if(!recipeName){
-             alert('Please enter the name of your recipe');
+             alert('Please enter the name of your recipe!');
              return;
          }
          if (!ingredients) {
-             alert('Please enter the ingredients of your recipe');
+             alert('Please enter the ingredients of your recipe!');
              return;
          }
-         if (!hours && !minutes) {
-             alert('Please enter the time needed for your recipe');
+         if (!hours) {
+             alert('Please enter the hours needed for your recipe! If they are 0, please type 0.');
              return; 
          }
+         if (!minutes) {
+            alert('Please enter the minutes needed for your recipe! If they are 0, please type 00.');
+            return; 
+        }
          if (!instructions) {
-            alert('Please enter the instructions to your recipe');
+            alert('Please enter the instructions to your recipe!');
             return;
         }
         if (!imgUrl) {
-            alert('Please add URL image to your recipe');
+            alert('Please add URL image to your recipe!');
             return;
         }
 
