@@ -5,23 +5,9 @@ const app = Sammy('#root', function(){
 
      //GET
     this.get('/home', function(context){
-        
-         DB.collection('recepies')
-             .get()
-                 .then((res) => {
-
-                     context.recepies = res.docs.map((recepie) => {
-                         console.log(recepie.data());
-                         
-                         return { id: recepie.id, ...recepie.data()}
-                     })
-                     loadHeaderAndFooter(context).then(function(){
-                         this.partial('./templates/home.hbs')
-                     }); 
-             });
-            
-            
-            
+        loadHeaderAndFooter(context).then(function(){
+            this.partial('./templates/home.hbs')
+                }); 
          })
 
     this.get('/register', function(context){
@@ -50,14 +36,6 @@ const app = Sammy('#root', function(){
              .catch(e => errorHandling(e))
      });
 
-    this.get('/myRecepies', function(context){
-        
-        loadHeaderAndFooter(context)
-            .then(function(){
-            this.partial('./templates/myRecepies.hbs')
-        })
-    });
-
     this.get('/aboutUs', function(context){
         
         loadHeaderAndFooter(context)
@@ -72,6 +50,45 @@ const app = Sammy('#root', function(){
             .then(function(){
             this.partial('./templates/createRecipe.hbs')
         })
+    });
+
+    this.get('/myRecepies', function(context){
+
+        DB.collection('recepies')
+            .get()
+                .then((res) => {
+
+                    const filtered = res.docs.map((recepie) => {
+                        const actualRecepiesData = recepie.data();
+                        //console.log(actualDestinationData);
+                       
+                        const creator = recepie.data().creator;
+                        const currentUser = getUserData().uid;
+                         console.log(creator);
+                         console.log(currentUser);
+                        const imTheCreator = creator === currentUser;
+                        console.log(imTheCreator);
+                        
+                        //console.log(imTheCreator);
+                        //console.log(actualDestinationData);
+                        //return {...actualDestinationData, imTheCreator, id: destination.id};
+                       
+                       const variable = {...actualRecepiesData, imTheCreator, id: recepie.id};
+   
+                        if(imTheCreator){
+                            
+                           return variable;
+                        }
+                        
+                        
+                         
+                    })
+                    console.log(filtered);
+                    context.recepies = filtered.filter(el => el !== undefined);
+                    loadHeaderAndFooter(context).then(function(){
+                        this.partial('./templates/myRecepies.hbs')
+                    }); 
+        });
     });
 
 

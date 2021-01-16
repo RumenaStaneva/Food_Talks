@@ -1,3 +1,16 @@
 {{> header}}
-<h1>myRecepies</h1>
+ <section>
+            <div class="added-recepies">
+                {{#each recepies}}
+                <a href="" class="added-recipe">
+                    <img src="{{this.imgUrl}}"
+                        alt="" class="picture-added-recipe">
+                    <h3 class="added-recipe-title">{{this.recipeName}}</h3>
+                    <p class="added-recipe-time">Preparation time <time>{{this.hours}}</time>:<time>{{this.minutes}} hour/s</time></p>
+                </a>
+                {{else}}
+                <p>Nothing to display</p>
+                {{/each}}
+                </div>
+ </section>
 {{> footer}}
