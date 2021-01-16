@@ -60,28 +60,18 @@ const app = Sammy('#root', function(){
 
                     const filtered = res.docs.map((recepie) => {
                         const actualRecepiesData = recepie.data();
-                        //console.log(actualDestinationData);
                        
                         const creator = recepie.data().creator;
                         const currentUser = getUserData().uid;
-                         console.log(creator);
-                         console.log(currentUser);
+                        console.log(creator);
+                        console.log(currentUser);
                         const imTheCreator = creator === currentUser;
                         console.log(imTheCreator);
-                        
-                        //console.log(imTheCreator);
-                        //console.log(actualDestinationData);
-                        //return {...actualDestinationData, imTheCreator, id: destination.id};
-                       
-                       const variable = {...actualRecepiesData, imTheCreator, id: recepie.id};
+                        const variable = {...actualRecepiesData, imTheCreator, id: recepie.id};
    
-                        if(imTheCreator){
-                            
+                        if(imTheCreator){ 
                            return variable;
-                        }
-                        
-                        
-                         
+                        }  
                     })
                     console.log(filtered);
                     context.recepies = filtered.filter(el => el !== undefined);
@@ -136,6 +126,27 @@ const app = Sammy('#root', function(){
 
      this.post('/createRecipe', function(context) {
          const {recipeName, ingredients, hours, minutes, instructions, imgUrl} = context.params;
+
+         if(!recipeName){
+             alert('Please enter the name of your recipe');
+             return;
+         }
+         if (!ingredients) {
+             alert('Please enter the ingredients of your recipe');
+             return;
+         }
+         if (!hours && !minutes) {
+             alert('Please enter the time needed for your recipe');
+             return; 
+         }
+         if (!instructions) {
+            alert('Please enter the instructions to your recipe');
+            return;
+        }
+        if (!imgUrl) {
+            alert('Please add URL image to your recipe');
+            return;
+        }
 
          DB.collection('recepies').add({
             recipeName,
