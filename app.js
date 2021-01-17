@@ -113,11 +113,14 @@ const app = Sammy('#root', function(){
 
      this.post('/login', function(context) {
          let {email, password} = context.params;
-         console.log(email + password)
          firebase.auth().signInWithEmailAndPassword(email, password)
          .then((res) => {
-             saveUserdata(res)
-             alert(`Hello ${res.user.email}`);
+             
+             let userName = res.user.email.split('@').shift();
+             userName = userName.charAt(0).toUpperCase() + userName.slice(1)
+             console.log(userName);
+             saveUserdata(res, userName);
+             alert(`Hello ${userName}`);
              context.redirect('/home')
         
          }).catch(e => errorHandling(e));
@@ -176,7 +179,7 @@ const app = Sammy('#root', function(){
 function loadHeaderAndFooter(context) {
     const user = getUserData();
     context.loggedIn = Boolean(user);
-    context.email = user ? user.email : '';
+    context.userName = user ? user.userName : '';
     return context.loadPartials({
         'header': './templates/common/header.hbs',
         'footer': './templates/common/footer.hbs'
@@ -187,9 +190,9 @@ function loadHeaderAndFooter(context) {
      alert(error)
  }
 
- function saveUserdata(data){
-     const {user: {email, uid}} = data
-     localStorage.setItem('userInfo', JSON.stringify({email, uid}))
+ function saveUserdata(data, userName){
+     const {user: {email, uid}} = data;
+     localStorage.setItem('userInfo', JSON.stringify({email, uid, userName}))
  }
 
  function getUserData(){
