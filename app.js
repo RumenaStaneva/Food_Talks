@@ -81,6 +81,14 @@ const app = Sammy('#root', function(){
         });
     });
 
+    this.get('/details', function(context){
+        
+        loadHeaderAndFooter(context)
+            .then(function(){
+            this.partial('./templates/details.hbs')
+        })
+    });
+
 
 
      //POST
@@ -167,6 +175,7 @@ const app = Sammy('#root', function(){
          })
              .then((createdRecipe) => {
                  console.log(createdRecipe);
+                 alert(`Congarts! ${recipeName} recipe was created!`)
                  this.redirect('/home');
              })
              .catch(e => errorHandling(e));
