@@ -180,7 +180,8 @@ header {
 .footer-left a {
   font-weight: bold;
   font-size: 25px;
-  color: #375163;
+  color: #fff;
+  text-shadow: 2px 0 0 #375163, -2px 0 0 #375163, 0 2px 0 #375163, 0 -2px 0 #375163, 2px 2px #375163, -2px -2px 0 #375163, 2px -2px 0 #375163, -2px 2px 0 #375163;
   text-decoration: none;
   position: relative;
 }

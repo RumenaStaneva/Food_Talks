@@ -1,3 +1,26 @@
 {{> header}}
-<h1>We are currently working on this page. Stay tuned and be patient.</h1>
+        <div class="offer-details">
+            <h1>{{recipe.recipeName}}</h1>
+            <div class="info">
+                <img src="{{recipe.imageUrl}}"
+                    alt="">
+                <div class="description">{{recipe.recipeName}}
+                    <br>
+                    <br>
+                    <p class="price">{{recipe.hours}}</p>
+                </div>
+            </div>
+            <div class="actions">
+                {{#if recipe.imTheCreator}}
+                <a href="/editOffer/{{recipe.id}}">Edit</a>
+                <a href="/deleteOffer/{{recipe.id}}">Delete</a>
+                {{else}}
+                {{#if recipe.imInTheLikedList}}
+                <span>You liked it</span>
+                {{else}}
+                <a href="/buy/{{recipe.id}}">Like</a>
+                {{/if}}
+                {{/if}}
+            </div>
+        </div>
 {{> footer}}

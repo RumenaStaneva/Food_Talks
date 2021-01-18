@@ -63,17 +63,13 @@ const app = Sammy('#root', function(){
                        
                         const creator = recepie.data().creator;
                         const currentUser = getUserData().uid;
-                        console.log(creator);
-                        console.log(currentUser);
                         const imTheCreator = creator === currentUser;
-                        console.log(imTheCreator);
                         const variable = {...actualRecepiesData, imTheCreator, id: recepie.id};
    
                         if(imTheCreator){ 
                            return variable;
                         }  
                     })
-                    console.log(filtered);
                     context.recepies = filtered.filter(el => el !== undefined);
                     loadHeaderAndFooter(context).then(function(){
                         this.partial('./templates/myRecepies.hbs')
@@ -81,12 +77,45 @@ const app = Sammy('#root', function(){
         });
     });
 
-    this.get('/details', function(context){
+    this.get('/details/:recipeId', function(context){
+        const {recipeId} = context.params;
+        console.log(recipeId);
         
-        loadHeaderAndFooter(context)
-            .then(function(){
-            this.partial('./templates/details.hbs')
+        DB.collection('recepies')
+        .doc(recipeId)
+        .get()
+        .then((res) => {
+            const {uid}  = getUserData();
+            console.log(uid);
+           
+            const actualRecipeData = res.data();
+            const imTheCreator = actualRecipeData.creator === uid;
+            console.log(actualRecipeData.peopleWhoLiked);
+            
+            const userIndex = actualRecipeData.peopleWhoLiked.indexOf(uid);
+            console.log(userIndex);
+            
+            const imInTheLikedList = userIndex > -1
+            
+            context.recipe = {...actualRecipeData, imTheCreator, id: recipeId, imInTheLikedList};
+            loadHeaderAndFooter(context).then(function(){
+               this.partial('./templates/details.hbs')
+           });
         })
+    });
+
+    this.get('/allRecepies', function(context){
+        DB.collection('recepies')
+            .get()
+                .then((res) => {
+        
+                    context.recepies = res.docs.map((recepie) => {
+                        return { id: recepie.id, ...recepie.data()}
+                    })
+                    loadHeaderAndFooter(context).then(function(){
+                        this.partial('./templates/allRecepies.hbs')
+                    }); 
+                });
     });
 
 
